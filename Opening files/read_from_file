@@ -1,0 +1,46 @@
+.data
+finput:		.asciiz "input_read.txt"
+string: 	.space 28	# espaco para escrever a leitura
+.text
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+
+# Abrindo arquivo que nao existe para escrita
+li $v0,  13		# syscall para abrir arquivo
+la $a0, finput	# file description
+li $a1, 0		# abrindo p/ leitura   ->   1: escrita   0: leitura
+li $a2, 0		# mode is ignored  (???)
+syscall
+move $s6, $v0	# move o arquivo p/  $s6
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+# Lendo arquivo
+li $v0, 14		# syscall para leitura
+move $a0, $s6	# file descriptor
+la $a1, string	# endereço do input buffer
+li $a2, 28		# numero maximo de caracteres a serem lidos
+syscall
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+# Escrevendo na string
+li $v0, 4
+la $a0, string
+syscall
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+
+# Fechar arquivo
+li $v0, 16		#syscall para fechar arquivo
+move $a0, $s6	# arquivo que vai fechar
+syscall		
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#

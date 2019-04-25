@@ -20,7 +20,5 @@
 #  in pure binary by either 1 or 2 bytes. If the Maxval is less than 256, 
 #  it is 1 byte. Otherwise, it is 2 bytes. The most significant byte is first.
 #
-# 
-#
-#
-#
+
+		
