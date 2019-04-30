@@ -1,7 +1,7 @@
 .data
 finput:	.asciiz "read.pgm"
 foutput:	.asciiz "write.pgm"
-space:	.space 1
+space:	.space 3
 end:
 .text
 
@@ -43,4 +43,3 @@ move $a0, $s6	# movendo arquivo p/  $a0
 la $a1, space	# o que vai ser escrito
 li $a2, 1		# tamanho do buffer
 syscall
-
