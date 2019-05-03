@@ -1,14 +1,16 @@
 .data
-finput:	.asciiz "read.pgm"
-foutput:	.asciiz "write.pgm"
-space:	.space 3
+string1:	.asciiz "Nome padrao dos arquivos: "
+string2:	.asciiz "Quantidade de arquivos: "
+name:		.space 10
+space:	.space 1
 end:
 .text
+
 
 OpenRead:
 	# Abrindo arquivo para leitura 
 	li $v0, 13
-	la $a0, finput
+	la $a0, name
 	li $a1, 0	
 	li $a2, 0
 	syscall
@@ -28,10 +30,15 @@ li $v0, 16		#syscall para fechar arquivo
 move $a0, $s6	# arquivo que vai fechar
 syscall
 
+
+
+
+
+#------------------------------------------------------------#
 OpenWrite:
 # Abrindo arquivo para escrita 
 li $v0, 13
-la $a0, foutput
+la $a0, name
 li $a1, 1
 li $a2, 0
 syscall
